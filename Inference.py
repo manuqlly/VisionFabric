@@ -6,11 +6,11 @@ from collections import defaultdict
 from datetime import datetime
 
 # Paths
-CFG_PATH = 'towel-tiny.cfg'
-WEIGHTS_PATH = 'towel-tiny_best.weights'
+CFG_PATH = 'custom-tiny.cfg'
+WEIGHTS_PATH = 'Your Model.weights'
 NAMES_PATH = 'obj.names'
-VIDEO_INPUT = '2.mp4'
-VIDEO_OUTPUT = 'pan_2.avi'
+VIDEO_INPUT = 'input_video'
+VIDEO_OUTPUT = 'output.avi'
 
 CONF_THRESHOLD = 0.4
 NMS_THRESHOLD = 0.4
@@ -111,12 +111,11 @@ def draw_dashboard_panel(video_frame, towel_count, frame_num, logo_img):
         f"Time: {now.strftime('%H:%M:%S')}",
         "",
         "Current Details:",
-        "Customer name: xyz",
+        "Fabric name: xyz",
         "Batch no: 1234",
         "",
         "Current Stats:",
-        f"Towel Count: {towel_count}",
-        "Required Count: 1000"
+        f"Fabric Count: {towel_count}"
     ]
 
     bold_headers = {"LIVE Stats:", "Current Details:", "Current Stats:"}
@@ -175,7 +174,7 @@ def main():
             if not ret:
                 break
 
-            frame = cv2.rotate(frame, cv2.ROTATE_90_CLOCKWISE)
+            frame = cv2.rotate(frame, cv2.ROTATE_90_CLOCKWISE) #comment it if you dont want to rotate the video
             frame_num += 1
 
             detections = detect_towels(frame, net, output_layers, CONF_THRESHOLD)
@@ -195,7 +194,7 @@ def main():
             draw_roi_and_boxes(frame, tracker_outputs, roi_y1, roi_y2, counted_ids)
             combined_frame = draw_dashboard_panel(frame, towel_count, frame_num, logo_img)
             out.write(combined_frame)
-            cv2.imshow("Towel Counter", combined_frame)
+            cv2.imshow("Fabric Counter", combined_frame)
 
             if cv2.waitKey(1) == 27:
                 break
