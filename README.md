@@ -1,15 +1,17 @@
-# VisionFabric - Custom YOLO Object Detection Training & Inference
+# VisionFabric - Custom YOLO Object Detection & Tracking Pipeline
 
-A complete pipeline for training custom YOLO models and performing video inference for object detection and tracking.
+**VisionFabric** is a complete pipeline for training custom YOLO models and performing real-time video inference with object detection, tracking, and ROI-based counting.
 
 ![Detection Result](image.png)
 
-## 🚀 Quick Start
+> ⚠️ **Note:** This tutorial provides everything you need to train your own custom YOLO model from scratch.
 
-This project provides a complete workflow for:
-1. **Data Preparation** - Extract and annotate video frames
-2. **Model Training** - Train custom YOLO model on Google Colab
-3. **Video Inference** - Real-time object detection and tracking
+## 🚀 What You'll Build
+
+This project enables you to:
+- 📦 **Extract & Annotate** frames from videos for custom object detection
+- 🧠 **Train YOLOv4-Tiny** models on Google Colab with GPU acceleration  
+- 🎥 **Real-time Inference** with object tracking, counting, and dashboard overlay
 
 ## 📋 Prerequisites
 
@@ -20,9 +22,9 @@ This project provides a complete workflow for:
 
 ## 🎯 Step 1: Data Preparation
 
-### Extract Frames from Video
+### 📸 Extract Frames from Video
 
-Extract 100-200 frames from your video files using any video processing tool or Python script:
+Extract 100-200 frames from your video using this script:
 
 ```python
 import cv2
@@ -43,14 +45,14 @@ def extract_frames(video_path, output_dir, max_frames=200):
     cap.release()
 ```
 
-### Annotate Images with LabelImg
+### 🖊️ Annotate Images with LabelImg
 
 1. **Install LabelImg:**
    ```bash
    pip install labelImg
    ```
    
-   Or clone from GitHub:
+   **Or from GitHub:**
    ```bash
    git clone https://github.com/HumanSignal/labelImg.git
    cd labelImg
@@ -61,11 +63,11 @@ def extract_frames(video_path, output_dir, max_frames=200):
 2. **Annotation Process:**
    - Launch LabelImg: `labelImg`
    - Open your extracted frames directory
-   - Set save format to **YOLO**
+   - **Set save format to YOLO** ⚠️
    - Create bounding boxes around objects
    - Save annotations (creates `.txt` files)
 
-3. **File Structure:**
+3. **Required File Structure:**
    ```
    obj/
    ├── frame_000001.jpg
@@ -75,18 +77,18 @@ def extract_frames(video_path, output_dir, max_frames=200):
    └── ...
    ```
 
-## 🔥 Step 2: Model Training (Google Colab)
+## 🔥 Step 2: YOLOv4-Tiny Training (Google Colab)
 
-### Upload Required Files to Colab
+### 📤 Upload Required Files to Colab
 
 1. **Zip your annotated dataset:**
    ```bash
    zip -r obj.rar obj/
    ```
 
-2. **Upload to Colab:**
+2. **Upload these files to Colab:**
    - `obj.rar` (your annotated dataset)
-   - `custom-tiny.cfg` (configuration file for 1 class)
+   - `custom-tiny.cfg` (pre-configured for 1 class)
    - `obj.data` (dataset configuration)
    - `obj.names` (class names)
 
@@ -162,7 +164,6 @@ VisionFabric/
 ├── obj.names             # Class names
 ├── towel-tiny_best.weights # Trained model weights
 ├── requirements.txt       # Python dependencies
-├── sort.py               # For Tracking
 ├── image.png             # Sample detection result
 └── README.md             # This file
 ```
