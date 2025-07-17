@@ -1,6 +1,15 @@
+![Python](https://img.shields.io/badge/python-3.7%2B-blue)
+![YOLOv4-Tiny](https://img.shields.io/badge/YOLO-v4--tiny-brightgreen)
+![License](https://img.shields.io/badge/license-MIT-lightgrey)
 # VisionFabric - Custom YOLO Object Detection & Tracking Pipeline
 
 **VisionFabric** is a complete pipeline for training custom YOLO models and performing real-time video inference with object detection, tracking, and ROI-based counting.
+
+## 🧪 Demo Snapshot
+
+📌 *Model screenshots or detection GIFs are excluded due to company confidentiality.*
+
+The inference script overlays bounding boxes, tracks object IDs, and logs object counts per ROI to a CSV. Video output saves results in real time.
 
 ![Detection Result](image.png)
 
